@@ -1,0 +1,9 @@
+$KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
+$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+$KAFKA_HOME/bin/kafka-topics.sh --create --topic task1-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+corre producer.py y consumer.py en dos terminales diferentes
+python3 producer.py
+python3 consumer.py
+
+as temperaturas geradas pelo producer.py são enviadas para o consumer.py

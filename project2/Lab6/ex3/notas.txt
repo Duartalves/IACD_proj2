@@ -1,0 +1,13 @@
+$KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
+$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+$KAFKA_HOME/bin/kafka-topics.sh --create --topic purchase-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+topico criado para compras
+
+$KAFKA_HOME/bin/kafka-topics.sh --create --topic user-activity-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+topico criado para atividades
+
+python3 multi_producer.py -> para começar a correr quem vai gerar e enviar as mensagens
+
+python3 purchase_consumer.py -> para receber apenas as compras e incrementar o valor total
+
+python3 activity.py -> para receber apenas atividades e incrementar para cada user o seu valor total

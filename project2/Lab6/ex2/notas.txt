@@ -1,0 +1,20 @@
+$KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
+$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+$KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
+
+$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+
+$KAFKA_HOME/bin/kafka-topics.sh --create --topic task2-topic --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+"3 partitions conforme o professor pediu!"
+
+python3 producer.py
+
+No código do consumer,py adicionamos o grupo de consomidores "activity group" que irá ter n consumidores em que n é o número de terminas abertos com o script a correr: pyhton3 consumer.py
+
+Com um consumer, ele recebe todas as mensagens do producer
+
+Com dois consumer, dividem a carga enviada pela producer de forma "aleatória" (primeiro a ficar livre recebe)
+
+Com tres consumer, dividem a carga enviada pela producer de forma "aleatória"
+
+Com quatro consumer, tres consumer dividem a carga enviada pela producer de forma "aleatória", e o ultimo a conectar fica sem resposta. Uma vez que o producer apenas tem 3 partições
