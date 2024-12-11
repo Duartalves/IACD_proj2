@@ -15,7 +15,7 @@ orders_rdd = sc.textFile(input_path)
 customer_spending_rdd = (
     orders_rdd
     .map(lambda line: line.split(","))  # Split each line into [CustomerID, OrderAmount]
-    .map(lambda fields: (int(fields[0]), float(fields[1])))  # Convert to (CustomerID, OrderAmount)
+    .map(lambda fields: (int(fields[0]), float(fields[2])))  # Convert to (CustomerID, OrderAmount)
     .reduceByKey(lambda a, b: a + b)  # Sum amounts by CustomerID
 )
 
